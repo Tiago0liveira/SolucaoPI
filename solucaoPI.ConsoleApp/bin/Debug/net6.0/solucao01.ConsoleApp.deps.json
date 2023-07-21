@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "solucao01.ConsoleApp/1.0.0": {
+        "dependencies": {
+          "solucao01.Classes": "1.0.0"
+        },
+        "runtime": {
+          "solucao01.ConsoleApp.dll": {}
+        }
+      },
+      "solucao01.Classes/1.0.0": {
+        "runtime": {
+          "solucao01.Classes.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "solucao01.ConsoleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "solucao01.Classes/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

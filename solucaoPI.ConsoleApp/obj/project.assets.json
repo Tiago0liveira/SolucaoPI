@@ -1,0 +1,89 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0": {
+      "solucaoPI.Classes/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/solucaoPI.Classes.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/solucaoPI.Classes.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "solucaoPI.Classes/1.0.0": {
+      "type": "project",
+      "path": "../solucaoPI.Classes/solucaoPI.Classes.csproj",
+      "msbuildProject": "../solucaoPI.Classes/solucaoPI.Classes.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0": [
+      "solucaoPI.Classes >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\tiago\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj",
+      "projectName": "solucaoPI.ConsoleApp",
+      "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj",
+      "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "projectReferences": {
+            "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj": {
+              "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0": {
+        "targetAlias": "net6.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.407\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

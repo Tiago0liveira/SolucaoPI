@@ -1,0 +1,12 @@
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\bin\Debug\net6.0\solucaoPI.Classes.deps.json
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\bin\Debug\net6.0\solucaoPI.Classes.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\bin\Debug\net6.0\solucaoPI.Classes.pdb
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\solucaoPI.Classes.csproj.AssemblyReference.cache
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\solucaoPI.Classes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\solucaoPI.Classes.AssemblyInfoInputs.cache
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\solucaoPI.Classes.AssemblyInfo.cs
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\solucaoPI.Classes.csproj.CoreCompileInputs.cache
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\solucaoPI.Classes.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\refint\solucaoPI.Classes.dll
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\solucaoPI.Classes.pdb
+C:\Users\tiago\OneDrive\Área de Trabalho\SolucaoPI\solucaoPI.Classes\obj\Debug\net6.0\ref\solucaoPI.Classes.dll
