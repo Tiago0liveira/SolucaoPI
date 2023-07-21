@@ -1,0 +1,1 @@
+21/07/2023 14:46:09: Saída - ID: 1, Nome: ProdutoA, Quantidade Restante: 35, Quantidade Minima: 1, Validade: 04/05/2023

@@ -14,7 +14,7 @@ namespace ControleEstoque
             produtos = new List<Produto>();
             this.arquivoMovimentacoes = arquivoMovimentacoes;
         }
-        
+
 
         public void AdicionarProduto(Produto produto)
         {
@@ -133,8 +133,8 @@ namespace ControleEstoque
                 {
                     linhas.Add(movimentacao);
                 }
-                        File.WriteAllLines(arquivoMovimentacoes, linhas);
-                       // File.AppendAllLines(arquivoMovimentacoes, new List<string> { movimentacao });
+                File.WriteAllLines(arquivoMovimentacoes, linhas);
+                // File.AppendAllLines(arquivoMovimentacoes, new List<string> { movimentacao });
 
             }
             catch (Exception ex)
@@ -143,7 +143,7 @@ namespace ControleEstoque
             }
         }
 
-        
+
 
     }
 }

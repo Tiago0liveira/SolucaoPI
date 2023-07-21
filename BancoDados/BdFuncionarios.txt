@@ -1,0 +1,1 @@
+ Funcionario:b, Cargo:b, Login:*, Senha:*, Setor:b, Data do Registro: 21/07/2023 14:42:51

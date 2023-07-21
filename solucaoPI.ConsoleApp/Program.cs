@@ -11,30 +11,30 @@ namespace ControleEstoque
     public class Program
     {
         private static Estoque estoque;
-    private static List<Fornecedor> fornecedores;
-    private static List<Funcionario> funcionarios;
-    private static List<Setor> setores = new List<Setor>();
-    private static string arquivoFuncionarios = "../BancoDados/BdFuncionarios.txt";
-    private static string arquivoEstoque = "../BancoDados/BdEstoque.txt";
-    
-    public static void Main(string[] args)
-    {
-        estoque = VerificarArquivoEstoque();
-        fornecedores = new List<Fornecedor>();
-        funcionarios = new List<Funcionario>();
-        setores = new List<Setor>();
+        private static List<Fornecedor> fornecedores;
+        private static List<Funcionario> funcionarios;
+        private static List<Setor> setores = new List<Setor>();
+        private static string arquivoFuncionarios = "../BancoDados/BdFuncionarios.txt";
+        private static string arquivoEstoque = "../BancoDados/BdEstoque.txt";
+
+        public static void Main(string[] args)
+        {
+            estoque = VerificarArquivoEstoque();
+            fornecedores = new List<Fornecedor>();
+            funcionarios = new List<Funcionario>();
+            setores = new List<Setor>();
 
             // Verifica se o arquivo de funcionários existe e cria-o, se necessário
-             if (!File.Exists(arquivoFuncionarios))
-        {
-            File.Create(arquivoFuncionarios).Close();
-        }
-        
+            if (!File.Exists(arquivoFuncionarios))
+            {
+                File.Create(arquivoFuncionarios).Close();
+            }
+
             //LimparDadosArquivo();
             CarregarFuncionariosDeArquivo();
             SalvarFuncionariosEmArquivo();
             MostrarMenuPrincipal();
-            
+
         }
 
         public static void MostrarMenuPrincipal()
@@ -93,7 +93,7 @@ namespace ControleEstoque
         public static void CadastrarFornecedor()
         {
             Console.WriteLine("===== [ALERTA!] VOCÊ ESTA PRESTES A CADASTRAR UM NOVO FORNECEDOR =====");
-            Thread.Sleep(2000);;
+            Thread.Sleep(2000); ;
             Console.WriteLine();
             Console.WriteLine("===== Cadastro de Fornecedor =====");
             Console.WriteLine(" ");
@@ -119,7 +119,7 @@ namespace ControleEstoque
         public static void CadastrarFuncionario()
         {
             Console.WriteLine("===== [ALERTA!] VOCÊ ESTA PRESTES A CADASTRAR UM NOVO FUNCIONARIO =====");
-            Thread.Sleep(2000);;
+            Thread.Sleep(2000); ;
             Console.WriteLine();
             Console.WriteLine("===== Cadastro de Funcionário =====");
             Console.WriteLine("");
@@ -159,64 +159,64 @@ namespace ControleEstoque
         }
 
         public static void CadastrarProduto()
-{
-    Console.WriteLine("===== [ALERTA!] VOCÊ ESTÁ PRESTES A CADASTRAR UM NOVO PRODUTO =====");
-    Thread.Sleep(2000);;
-    Console.WriteLine();
-    Console.WriteLine("===== Cadastro de Produto =====");
-    Console.WriteLine();
-    Console.Write("Digite o nome do produto: ");
-    string nomeProduto = Console.ReadLine();
-    Console.Write("Digite a quantidade inicial: ");
-    int quantidade = int.Parse(Console.ReadLine());
-    Console.Write("Digite o volume mínimo: ");
-    int volumeMinimo = int.Parse(Console.ReadLine());
-    Console.Write("Digite o volume máximo: ");
-    int volumeMaximo = int.Parse(Console.ReadLine());
-    Console.Write("Digite a data de validade (dd/mm/aaaa): ");
-    string dataValidadeString = Console.ReadLine();
+        {
+            Console.WriteLine("===== [ALERTA!] VOCÊ ESTÁ PRESTES A CADASTRAR UM NOVO PRODUTO =====");
+            Thread.Sleep(2000); ;
+            Console.WriteLine();
+            Console.WriteLine("===== Cadastro de Produto =====");
+            Console.WriteLine();
+            Console.Write("Digite o nome do produto: ");
+            string nomeProduto = Console.ReadLine();
+            Console.Write("Digite a quantidade inicial: ");
+            int quantidade = int.Parse(Console.ReadLine());
+            Console.Write("Digite o volume mínimo: ");
+            int volumeMinimo = int.Parse(Console.ReadLine());
+            Console.Write("Digite o volume máximo: ");
+            int volumeMaximo = int.Parse(Console.ReadLine());
+            Console.Write("Digite a data de validade (dd/mm/aaaa): ");
+            string dataValidadeString = Console.ReadLine();
 
-    Produto produto = new Produto(nomeProduto)
-    {
-        Quantidade = quantidade,
-        VolumeMinimo = volumeMinimo,
-        VolumeMaximo = volumeMaximo
-    };
+            Produto produto = new Produto(nomeProduto)
+            {
+                Quantidade = quantidade,
+                VolumeMinimo = volumeMinimo,
+                VolumeMaximo = volumeMaximo
+            };
 
-    if (DateTime.TryParseExact(dataValidadeString, new[] { "dd/MM/yyyy", "ddMMyyyy" },
-        CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dataValidade))
-    {
-        produto.ValidadeProduto = dataValidade;
-        estoque.AdicionarProduto(produto);
+            if (DateTime.TryParseExact(dataValidadeString, new[] { "dd/MM/yyyy", "ddMMyyyy" },
+                CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dataValidade))
+            {
+                produto.ValidadeProduto = dataValidade;
+                estoque.AdicionarProduto(produto);
 
-        Console.WriteLine();
-        Console.WriteLine($"Produto cadastrado com sucesso! ID: {produto.Id}, Nome: {produto.NomeProduto}, Quantidade: {produto.Quantidade}, Data Validade: {produto.ValidadeProduto:dd/MM/yyyy}");
-    }
-    else
-    {
-        Console.WriteLine("Data de validade inválida. O produto não será cadastrado sem data de validade.");
-    }
+                Console.WriteLine();
+                Console.WriteLine($"Produto cadastrado com sucesso! ID: {produto.Id}, Nome: {produto.NomeProduto}, Quantidade: {produto.Quantidade}, Data Validade: {produto.ValidadeProduto:dd/MM/yyyy}");
+            }
+            else
+            {
+                Console.WriteLine("Data de validade inválida. O produto não será cadastrado sem data de validade.");
+            }
 
-    Console.WriteLine();
-    Console.WriteLine("Deseja cadastrar um novo Produto? (S/N)");
-    string cadastrarNovo = Console.ReadLine().ToLower();
+            Console.WriteLine();
+            Console.WriteLine("Deseja cadastrar um novo Produto? (S/N)");
+            string cadastrarNovo = Console.ReadLine().ToLower();
 
-    if (cadastrarNovo == "s")
-    {
-        CadastrarProduto();
-    }
-    else if (cadastrarNovo == "n")
-    {
-        Console.WriteLine("===== [ALERTA!] VOCÊ VAI SER REDIRECIONADO AO MENU ANTERIOR =====");
-        Thread.Sleep(1000);
-        Console.WriteLine();
-        
-    }
+            if (cadastrarNovo == "s")
+            {
+                CadastrarProduto();
+            }
+            else if (cadastrarNovo == "n")
+            {
+                Console.WriteLine("===== [ALERTA!] VOCÊ VAI SER REDIRECIONADO AO MENU ANTERIOR =====");
+                Thread.Sleep(1000);
+                Console.WriteLine();
+
+            }
 
             {
                 RealizarRecebimentoProdutos();
             }
-            
+
         }
 
 
@@ -227,7 +227,7 @@ namespace ControleEstoque
             while (opcao != 0 && opcao != 6)
             {
                 Console.WriteLine(" ===== BEM VINDO AO RECEBIMENTO DE PRODUTOS =====");
-                Thread.Sleep(2000);;
+                Thread.Sleep(2000); ;
                 Console.WriteLine();
                 Console.WriteLine("===== Recebimento de Produtos =====");
                 Console.WriteLine("1. Cadastrar novo produto");
@@ -273,7 +273,7 @@ namespace ControleEstoque
                             Console.WriteLine($"Produto atualizado com sucesso! ID: {produtoExistente.Id}, Nome: {produtoExistente.NomeProduto}, Quantidade: {produtoExistente.Quantidade}");
                             Console.WriteLine("");
                             Console.WriteLine("===== [ALERTA!] VOCÊ VAI SER REDIRECIONADO AO MENU ANTERIOR =====");
-                            Thread.Sleep(2000);;
+                            Thread.Sleep(2000); ;
                             Console.WriteLine("");
 
 
@@ -395,11 +395,14 @@ namespace ControleEstoque
                         Console.WriteLine(dataEntrada.ToString());
                     }
                     Console.WriteLine();
+                    Thread.Sleep(5000); ;
+
                 }
             }
             else
             {
                 Console.WriteLine("Não há produtos no inventário.");
+                Thread.Sleep(2000); ;
             }
         }
 
@@ -472,31 +475,31 @@ namespace ControleEstoque
             }
         }
 
-         private static Estoque VerificarArquivoEstoque()
-    {
-        // Verifica se o arquivo de estoque existe e cria-o, se necessário
-        if (!File.Exists(arquivoEstoque))
+        private static Estoque VerificarArquivoEstoque()
         {
-            File.Create(arquivoEstoque).Close();
-        }
-        
-        return new Estoque(arquivoEstoque);
-    }
+            // Verifica se o arquivo de estoque existe e cria-o, se necessário
+            if (!File.Exists(arquivoEstoque))
+            {
+                File.Create(arquivoEstoque).Close();
+            }
 
-        public static void LimparDadosArquivo()
-    {
-        try
-        {
-            // Cria um novo arquivo vazio com o mesmo nome do arquivo existente, substituindo-o
-            File.WriteAllText(arquivoFuncionarios, string.Empty);
+            return new Estoque(arquivoEstoque);
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Erro ao limpar dados do arquivo: {ex.Message}");
-        }
+
+        //     public static void LimparDadosArquivo()
+        // {
+        //     try
+        //     {
+        //         // Cria um novo arquivo vazio com o mesmo nome do arquivo existente, substituindo-o
+        //         File.WriteAllText(arquivoFuncionarios, string.Empty);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         Console.WriteLine($"Erro ao limpar dados do arquivo: {ex.Message}");
+        //     }
+        // }
     }
 }
-    }
 
 
 
