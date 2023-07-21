@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj": {}
+    "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj": {
+    "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj",
+        "projectUniqueName": "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj",
         "projectName": "solucaoPI.Classes",
-        "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj",
+        "projectPath": "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj",
         "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\obj\\",
+        "outputPath": "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -57,14 +57,14 @@
         }
       }
     },
-    "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj": {
+    "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj",
+        "projectUniqueName": "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj",
         "projectName": "solucaoPI.ConsoleApp",
-        "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj",
+        "projectPath": "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\solucaoPI.ConsoleApp.csproj",
         "packagesPath": "C:\\Users\\tiago\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\obj\\",
+        "outputPath": "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.ConsoleApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\tiago\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -79,8 +79,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj": {
-                "projectPath": "C:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj"
+              "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj": {
+                "projectPath": "c:\\Users\\tiago\\OneDrive\\Área de Trabalho\\SolucaoPI\\solucaoPI.Classes\\solucaoPI.Classes.csproj"
               }
             }
           }

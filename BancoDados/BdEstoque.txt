@@ -1,2 +1,0 @@
-20/07/2023 22:35:30: Entrada - ID: 1, Nome: a, Quantidade Restante: 10, Quantidade Minima: 1, Validade: 04/05/2000
-20/07/2023 22:35:54: Entrada - ID: 2, Nome: b, Quantidade Restante: 10, Quantidade Minima: 1, Validade: 04/04/2023
