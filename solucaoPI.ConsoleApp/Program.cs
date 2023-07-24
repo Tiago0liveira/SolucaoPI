@@ -40,6 +40,7 @@ namespace ControleEstoque
 
         public static void MostrarMenuPrincipal()
         {
+          
             Console.WriteLine();
             Console.WriteLine("===== Controle de Estoque Integrador  =====");
             Console.WriteLine("=====                                 =====");

@@ -1,1 +1,1 @@
- Funcionario:b, Cargo:b, Login:*, Senha:*, Setor:b, Data do Registro: 21/07/2023 14:42:51
+ Funcionario:A, Cargo:A, Login:*, Senha:*, Setor:A, Data do Registro: 24/07/2023 14:42:29

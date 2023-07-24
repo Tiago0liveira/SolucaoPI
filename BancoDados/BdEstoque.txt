@@ -1,1 +1,1 @@
-21/07/2023 14:46:09: Saída - ID: 1, Nome: ProdutoA, Quantidade Restante: 35, Quantidade Minima: 1, Validade: 04/05/2023
+24/07/2023 14:42:46: Saída - ID: 1, Nome: BANANA, Quantidade Restante: 5, Quantidade Minima: 1, Validade: 04/05/2023
