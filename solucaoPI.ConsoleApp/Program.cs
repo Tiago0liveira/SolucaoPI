@@ -120,6 +120,9 @@ namespace ControleEstoque
             };
 
             fornecedores.Add(fornecedor);
+            Console.WriteLine();
+            Console.WriteLine($"Fornecedor: {nome}, Endereço: {endereco}, Contato: {contato}");
+            Thread.Sleep(2000);
             Console.WriteLine("");
             Console.WriteLine("Fornecedor cadastrado com sucesso!");
         }
