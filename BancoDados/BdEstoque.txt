@@ -1,1 +1,3 @@
-24/07/2023 14:42:46: Saída - ID: 1, Nome: BANANA, Quantidade Restante: 5, Quantidade Minima: 1, Validade: 04/05/2023
+25/07/2023 21:31:58: Entrada - ID: 1, Nome: caixa, Quantidade Restante: 200, Quantidade Minima: 1, Validade: 04/05/2030
+25/07/2023 21:32:22: Entrada - ID: 2, Nome: celular, Quantidade Restante: 150, Quantidade Minima: 10, Validade: 04/05/2034
+25/07/2023 21:32:40: Entrada - ID: 3, Nome: cadeira, Quantidade Restante: 10, Quantidade Minima: 1, Validade: 04/05/2023

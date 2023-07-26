@@ -1,0 +1,52 @@
+CREATE DATABASE ProjetorIntegrador;
+
+CREATE TABLE Produto 
+( 
+ Id_produto INT PRIMARY KEY NOT NULL AUTO_INCREMENT,  
+ NomeProduto VARCHAR(n),  
+ DataEntrada DATE NOT NULL DEFAULT 'List',  
+ Quantidade INT NOT NULL,  
+ VolumeMaximo INT,  
+ VolumeMinimo INT NOT NULL,  
+ ValidadeProduto DATE NOT NULL,  
+ CHECK (Quantidade > 0),
+ UNIQUE (Id_produto: PK)
+); 
+
+CREATE TABLE Setor 
+( 
+ id_Nome VARCHAR(n) PRIMARY KEY,  
+); 
+
+CREATE TABLE Fornecedor 
+( 
+ Nome VARCHAR(n) NOT NULL,  
+ Endereço VARCHAR(n) NOT NULL,  
+ Contato VARCHAR(n) NOT NULL,  
+ ID INT PRIMARY KEY NOT NULL AUTO_INCREMENT,  
+ UNIQUE (ID: PK)
+); 
+
+CREATE TABLE Funcionario 
+( 
+ ID INT PRIMARY KEY AUTO_INCREMENT,  
+ Nome VARCHAR(n) NOT NULL,  
+ Cargo VARCHAR(n) NOT NULL,  
+ Login VARCHAR(n) NOT NULL,  
+ Senha VARCHAR(n) NOT NULL,  
+ Setor_id VARCHAR(n) NOT NULL,  
+ UNIQUE (Setor_id: FK)
+); 
+
+CREATE TABLE Estoque 
+( 
+ produto_id INT,  
+ funcionario_id INT,  
+ Setor_id VARCHAR(n) NOT NULL,  
+ UNIQUE (Setor_id: FK)
+); 
+
+ALTER TABLE Funcionario ADD FOREIGN KEY(Setor_id) REFERENCES Setor (Setor_id)
+ALTER TABLE Estoque ADD FOREIGN KEY(produto_id) REFERENCES Produto (produto_id)
+ALTER TABLE Estoque ADD FOREIGN KEY(funcionario_id) REFERENCES Funcionario (funcionario_id)
+ALTER TABLE Estoque ADD FOREIGN KEY(Setor_id) REFERENCES Setor (Setor_id)

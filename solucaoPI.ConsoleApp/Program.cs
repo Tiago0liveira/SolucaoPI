@@ -14,6 +14,9 @@ namespace ControleEstoque
         private static List<Fornecedor> fornecedores;
         private static List<Funcionario> funcionarios;
         private static List<Setor> setores = new List<Setor>();
+
+        private static CrudEstoque crudEstoque;
+
         private static string arquivoFuncionarios = "../BancoDados/BdFuncionarios.txt";
         private static string arquivoEstoque = "../BancoDados/BdEstoque.txt";
 
@@ -24,6 +27,7 @@ namespace ControleEstoque
             fornecedores = new List<Fornecedor>();
             funcionarios = new List<Funcionario>();
             setores = new List<Setor>();
+            crudEstoque = new CrudEstoque(arquivoEstoque);
 
             // Verifica se o arquivo de funcionários existe e cria-o, se necessário
             if (!File.Exists(arquivoFuncionarios))
@@ -40,7 +44,7 @@ namespace ControleEstoque
 
         public static void MostrarMenuPrincipal()
         {
-          
+
             Console.WriteLine();
             Console.WriteLine("===== Controle de Estoque Integrador  =====");
             Console.WriteLine("=====                                 =====");
@@ -79,8 +83,10 @@ namespace ControleEstoque
                     Console.WriteLine("===== Obrigado por utilizar o Controle de Estoque Integrador! =====");
                     Console.WriteLine("===== Esperamos que sua experiência tenha sido satisfatória.  =====");
                     Console.WriteLine("===== Até a próxima! Volte sempre!                            =====");
+                    Console.WriteLine("===================================================================");
                     Console.WriteLine();
                     Environment.Exit(0);
+                    
                     return;
                 default:
                     Console.WriteLine("Opção inválida. Tente novamente.");
@@ -189,7 +195,7 @@ namespace ControleEstoque
                 CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dataValidade))
             {
                 produto.ValidadeProduto = dataValidade;
-                estoque.AdicionarProduto(produto);
+                crudEstoque.AdicionarProduto(produto);
 
                 Console.WriteLine();
                 Console.WriteLine($"Produto cadastrado com sucesso! ID: {produto.Id}, Nome: {produto.NomeProduto}, Quantidade: {produto.Quantidade}, Data Validade: {produto.ValidadeProduto:dd/MM/yyyy}");
@@ -209,6 +215,7 @@ namespace ControleEstoque
             }
             else if (cadastrarNovo == "n")
             {
+                estoque.CarregarProdutostxt();
                 Console.WriteLine("===== [ALERTA!] VOCÊ VAI SER REDIRECIONADO AO MENU ANTERIOR =====");
                 Thread.Sleep(1000);
                 Console.WriteLine();
@@ -235,7 +242,7 @@ namespace ControleEstoque
                 Console.WriteLine("1. Cadastrar novo produto");
                 Console.WriteLine("2. Cadastrar Um produto existente");
                 Console.WriteLine("0. Retornar ao Menu Principal");
-                Console.WriteLine("====================================");
+                Console.WriteLine("===================================");
 
                 Console.Write("Digite a opção desejada: ");
                 if (!int.TryParse(Console.ReadLine(), out opcao))
@@ -250,6 +257,7 @@ namespace ControleEstoque
                 {
                     case 1:
                         CadastrarProduto();
+                        estoque.CarregarProdutostxt();
                         break;
                     case 2:
                         Console.Write("Digite o ID do produto: ");
@@ -259,7 +267,8 @@ namespace ControleEstoque
                             continue;
                         }
 
-                        Produto produtoExistente = estoque.ConsultarProduto(idProduto);
+                        Produto produtoExistente = estoque.GetProdutoPorId(idProduto);
+
                         if (produtoExistente != null)
                         {
                             Console.Write("Digite a quantidade recebida: ");
@@ -281,6 +290,7 @@ namespace ControleEstoque
 
 
                             estoque.SalvarMovimentacao(produtoExistente);
+                            estoque.CarregarProdutostxt();
 
                             break;
                         }
@@ -290,15 +300,17 @@ namespace ControleEstoque
                             Console.WriteLine("Produto não encontrado. Recebimento de produtos não registrado.");
                         }
                         break;
+                        
                     case 0:
-                    Thread.Sleep(1000);
-                    MostrarMenuPrincipal();
+                        estoque.CarregarProdutostxt();
+                        Thread.Sleep(1000);
+                        MostrarMenuPrincipal();
                         return;
                     default:
                         Console.WriteLine("Opção inválida. Tente novamente.");
                         break;
                 }
-
+                
                 Console.WriteLine();
             }
 
@@ -307,134 +319,169 @@ namespace ControleEstoque
 
 
         public static void RealizarEntregaProdutos()
-{
-    Console.WriteLine("===== Entrega de Produtos =====");
-    Console.Write("Digite o ID do produto: ");
-    int idProduto = int.Parse(Console.ReadLine());
-    Console.Write("Digite a quantidade a ser entregue: ");
-    int quantidadeEntregue = int.Parse(Console.ReadLine());
-
-    Produto produto = estoque.ConsultarProduto(idProduto);
-
-    if (produto != null)
-    {
-        if (produto.Quantidade >= quantidadeEntregue)
         {
-            Console.Write("Digite o nome do setor que está retirando o material: ");
-            string nomeSetor = Console.ReadLine();
+            Console.WriteLine("===== Entrega de Produtos =====");
+            Console.Write("Digite o ID do produto: ");
+            int idProduto = int.Parse(Console.ReadLine());
+            Console.Write("Digite a quantidade a ser entregue: ");
+            int quantidadeEntregue = int.Parse(Console.ReadLine());
 
-            Setor setor = setores.Find(s => s.Nome == nomeSetor);
-            if (setor != null)
+            Produto produto = estoque.GetProdutoPorId(idProduto);
+
+            if (produto != null)
             {
-                Console.Write("Digite o login do funcionário responsável: ");
-                string loginFuncionario = Console.ReadLine();
-
-                // Verifica se o funcionário e setor existem
-                Funcionario funcionario = setor.Funcionarios.Find(f => f.Login == loginFuncionario);
-                if (funcionario != null)
+                if (produto.Quantidade >= quantidadeEntregue)
                 {
-                    Console.WriteLine($"Quantidade antes da entrega: {produto.Quantidade}");
-                    produto.Quantidade -= quantidadeEntregue;
-                    Console.WriteLine($"Quantidade depois da entrega: {produto.Quantidade}");
+                    Console.Write("Digite o nome do setor que está retirando o material: ");
+                    string nomeSetor = Console.ReadLine();
 
-                    Console.WriteLine("Entrega de produtos registrada com sucesso!");
-                    estoque.RemoverProduto(idProduto);
+                    Setor setor = setores.Find(s => s.Nome == nomeSetor);
+                    if (setor != null)
+                    {
+                        Console.Write("Digite o login do funcionário responsável: ");
+                        string loginFuncionario = Console.ReadLine();
+
+                        // Verifica se o funcionário e setor existem
+                        Funcionario funcionario = setor.Funcionarios.Find(f => f.Login == loginFuncionario);
+                        if (funcionario != null)
+                        {
+                            // Remover o produto do estoque
+                            estoque.GetProdutos().Remove(produto);
+
+                            // Atualizar a quantidade
+                            produto.Quantidade -= quantidadeEntregue;
+                            Console.WriteLine($"Quantidade antes da entrega: {produto.Quantidade + quantidadeEntregue}");
+                            Console.WriteLine($"Quantidade depois da entrega: {produto.Quantidade}");
+
+                            // Salvar movimentação
+                            estoque.SalvarMovimentacao(produto, true);
+Console.WriteLine();
+                            Console.WriteLine("Entrega de produtos registrada com sucesso!");
+                        }
+                        else
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine("Funcionário não encontrado.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Setor não encontrado.");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("Funcionário não encontrado.");
+                    Console.WriteLine();
+                    Console.WriteLine("Quantidade insuficiente para realizar a entrega.");
                 }
             }
             else
             {
-                Console.WriteLine("Setor não encontrado.");
+                Console.WriteLine();
+                Console.WriteLine("Produto não encontrado.");
+            }
+        Thread.Sleep(2000);
+        }
+
+
+
+
+     public static void GerarInventario()
+{
+    Console.WriteLine(" ===== BEM VINDO AO INVENTARIO =====");
+    Thread.Sleep(1000);
+    Console.WriteLine();
+    Console.WriteLine("========== Inventário ==========");
+    Console.WriteLine("===== 1. Produtos no Estoque");
+    Console.WriteLine("===== 2. Consultar Produto por ID");
+    Console.WriteLine("===== 3. Consultar Produto Com limite Minimo ");
+    Console.WriteLine("===== 0. Retornar");
+    Console.WriteLine("=================================");
+
+    Console.Write("Digite a opção desejada: ");
+    
+    int opcao;
+    while (!int.TryParse(Console.ReadLine(), out opcao) || opcao < 0 || opcao > 3)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Opção inválida. Tente novamente.");
+ Thread.Sleep(2000);
+ Console.WriteLine();
+        GerarInventario();
+    }
+
+    Console.WriteLine();
+
+    if (opcao == 1)
+    {
+        estoque.ImprimirArquivo();
+        Thread.Sleep(1000);
+        Console.WriteLine();
+        Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
+        Console.WriteLine();
+        Thread.Sleep(1000);
+        GerarInventario();
+    }
+    else if (opcao == 2)
+    {
+        Console.Write("Digite o ID do produto: ");
+        int idparametro = int.Parse(Console.ReadLine());
+        Console.WriteLine();
+        var existe = crudEstoque.ConsultarProdutoNoArquivo(idparametro);
+        if (existe == null)
+        {
+            Console.WriteLine("ID não encontrado, tente novamente");
+            Thread.Sleep(1000);
+        }
+        else
+        {
+            Console.WriteLine($"ID Pesquisado: {idparametro}");
+                Console.WriteLine();
+            Console.WriteLine(existe);
+            Thread.Sleep(3000);
+        }
+    }
+    else if (opcao == 3)
+    {
+        List<Produto> produtosComVolumeMinimoAtingido = estoque.ListarProdutosComVolumeMinimoAtingido();
+        if (produtosComVolumeMinimoAtingido.Count > 0)
+        {
+            Console.WriteLine("===== Produtos com volume mínimo atingido =====");
+            foreach (Produto produto in produtosComVolumeMinimoAtingido)
+            {
+                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.NomeProduto}, Quantidade: {produto.Quantidade}, Volume Mínimo: {produto.VolumeMinimo}");
             }
         }
         else
         {
-            Console.WriteLine("Quantidade insuficiente para realizar a entrega.");
-        }
-    }
-    else
-    {
-        Console.WriteLine("Produto não encontrado.");
-    }
-}
-
-
-
-        public static void GerarInventario()
-        {
-            Console.WriteLine("===== Inventário =====");
-            Console.WriteLine("1. Produtos no Estoque");
-            Console.WriteLine("2. Consultar Produto por ID");
-            Console.WriteLine("3. Retornar");
-            Console.Write("Digite a opção desejada: ");
-            int opcao = int.Parse(Console.ReadLine());
-
+            Console.WriteLine("Não há produtos com volume mínimo atingido.");
             Console.WriteLine();
-
-           
-            if (opcao == 1)
-            {
-                estoque.ImprimirArquivo();
-                Thread.Sleep(3000);
-                return;
-            }
-            else if (opcao == 2)
-            {
-                Console.Write("Digite o ID do produto: ");
-                int idparametro = int.Parse(Console.ReadLine());
-                var existe = estoque.ConsultarProdutoNoArquivo(idparametro);
-                if(existe == null)
-                {
-                    Console.WriteLine("ID não encontrado, tente novamente");
-                    Thread.Sleep(1000);
-                    GerarInventario();
-                } else
-                {
-                    Console.WriteLine(estoque.ConsultarProdutoNoArquivo(idparametro));
-                    Thread.Sleep(3000);
-                    GerarInventario();
-                    
-                }
-
-            } else if (opcao == 3)
-            {
-                MostrarMenuPrincipal();
-            }
-                else
-            {
-                Console.WriteLine("Opção inválida. Tente novamente.");
-                return;
-            }
-            
-
-            /*if (produtosInventario.Count > 0)
-            {
-                Console.WriteLine("===== Inventário de Produtos =====");
-                foreach (Produto produto in produtosInventario)
-                {
-                    Console.WriteLine($"ID: {produto.Id}");
-                    Console.WriteLine($"Nome: {produto.NomeProduto}");
-                    Console.WriteLine($"Quantidade: {produto.Quantidade}");
-                    Console.WriteLine("Datas de Entrada:");
-                    foreach (DateTime dataEntrada in produto.DataEntrada)
-                    {
-                        Console.WriteLine(dataEntrada.ToString());
-                    }
-                    Console.WriteLine();
-                    Thread.Sleep(5000); ;
-
-                }
-            }
-            else
-            {
-                Console.WriteLine("Não há produtos no inventário.");
-                Thread.Sleep(2000); ;
-            }*/
         }
 
+     
+        Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
+        Console.WriteLine();
+        Thread.Sleep(2000);
+        GerarInventario();
+
+    }
+    else if (opcao == 0)
+    {
+         Console.WriteLine();
+     Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU PRINCIPAL");
+        Console.WriteLine();
+        Thread.Sleep(1000);
+        MostrarMenuPrincipal();
+    }
+    
+    Console.WriteLine();
+     Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
+        Console.WriteLine();
+        Thread.Sleep(1000);
+        GerarInventario();
+}
+    
         private static void CarregarFuncionariosDeArquivo()
         {
             try
