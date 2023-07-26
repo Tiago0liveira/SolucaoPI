@@ -86,7 +86,7 @@ namespace ControleEstoque
                     Console.WriteLine("===================================================================");
                     Console.WriteLine();
                     Environment.Exit(0);
-                    
+
                     return;
                 default:
                     Console.WriteLine("Opção inválida. Tente novamente.");
@@ -303,7 +303,7 @@ namespace ControleEstoque
                             Console.WriteLine("Produto não encontrado. Recebimento de produtos não registrado.");
                         }
                         break;
-                        
+
                     case 0:
                         estoque.CarregarProdutostxt();
                         Thread.Sleep(1000);
@@ -313,7 +313,7 @@ namespace ControleEstoque
                         Console.WriteLine("Opção inválida. Tente novamente.");
                         break;
                 }
-                
+
                 Console.WriteLine();
             }
 
@@ -358,7 +358,7 @@ namespace ControleEstoque
 
                             // Salvar movimentação
                             estoque.SalvarMovimentacao(produto, true);
-Console.WriteLine();
+                            Console.WriteLine();
                             Console.WriteLine("Entrega de produtos registrada com sucesso!");
                         }
                         else
@@ -384,107 +384,107 @@ Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("Produto não encontrado.");
             }
-        Thread.Sleep(2000);
+            Thread.Sleep(2000);
         }
 
 
 
 
-     public static void GerarInventario()
-{
-    Console.WriteLine(" ===== BEM VINDO AO INVENTARIO =====");
-    Thread.Sleep(1000);
-    Console.WriteLine();
-    Console.WriteLine("========== Inventário ==========");
-    Console.WriteLine("===== 1. Produtos no Estoque");
-    Console.WriteLine("===== 2. Consultar Produto por ID");
-    Console.WriteLine("===== 3. Consultar Produto Com limite Minimo ");
-    Console.WriteLine("===== 0. Retornar");
-    Console.WriteLine("=================================");
-
-    Console.Write("Digite a opção desejada: ");
-    
-    int opcao;
-    while (!int.TryParse(Console.ReadLine(), out opcao) || opcao < 0 || opcao > 3)
-    {
-        Console.WriteLine();
-        Console.WriteLine("Opção inválida. Tente novamente.");
- Thread.Sleep(2000);
- Console.WriteLine();
-        GerarInventario();
-    }
-
-    Console.WriteLine();
-
-    if (opcao == 1)
-    {
-        estoque.ImprimirArquivo();
-        Thread.Sleep(1000);
-        Console.WriteLine();
-        Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
-        Console.WriteLine();
-        Thread.Sleep(1000);
-        GerarInventario();
-    }
-    else if (opcao == 2)
-    {
-        Console.Write("Digite o ID do produto: ");
-        int idparametro = int.Parse(Console.ReadLine());
-        Console.WriteLine();
-        var existe = crudEstoque.ConsultarProdutoNoArquivo(idparametro);
-        if (existe == null)
+        public static void GerarInventario()
         {
-            Console.WriteLine("ID não encontrado, tente novamente");
+            Console.WriteLine(" ===== BEM VINDO AO INVENTARIO =====");
             Thread.Sleep(1000);
-        }
-        else
-        {
-            Console.WriteLine($"ID Pesquisado: {idparametro}");
-                Console.WriteLine();
-            Console.WriteLine(existe);
-            Thread.Sleep(3000);
-        }
-    }
-    else if (opcao == 3)
-    {
-        List<Produto> produtosComVolumeMinimoAtingido = estoque.ListarProdutosComVolumeMinimoAtingido();
-        if (produtosComVolumeMinimoAtingido.Count > 0)
-        {
-            Console.WriteLine("===== Produtos com volume mínimo atingido =====");
-            foreach (Produto produto in produtosComVolumeMinimoAtingido)
-            {
-                Console.WriteLine($"ID: {produto.Id}, Nome: {produto.NomeProduto}, Quantidade: {produto.Quantidade}, Volume Mínimo: {produto.VolumeMinimo}");
-            }
-        }
-        else
-        {
-            Console.WriteLine("Não há produtos com volume mínimo atingido.");
             Console.WriteLine();
+            Console.WriteLine("========== Inventário ==========");
+            Console.WriteLine("===== 1. Produtos no Estoque");
+            Console.WriteLine("===== 2. Consultar Produto por ID");
+            Console.WriteLine("===== 3. Consultar Produto Com limite Minimo ");
+            Console.WriteLine("===== 0. Retornar");
+            Console.WriteLine("=================================");
+
+            Console.Write("Digite a opção desejada: ");
+
+            int opcao;
+            while (!int.TryParse(Console.ReadLine(), out opcao) || opcao < 0 || opcao > 3)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Opção inválida. Tente novamente.");
+                Thread.Sleep(2000);
+                Console.WriteLine();
+                GerarInventario();
+            }
+
+            Console.WriteLine();
+
+            if (opcao == 1)
+            {
+                estoque.ImprimirArquivo();
+                Thread.Sleep(1000);
+                Console.WriteLine();
+                Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
+                Console.WriteLine();
+                Thread.Sleep(1000);
+                GerarInventario();
+            }
+            else if (opcao == 2)
+            {
+                Console.Write("Digite o ID do produto: ");
+                int idparametro = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+                var existe = crudEstoque.ConsultarProdutoNoArquivo(idparametro);
+                if (existe == null)
+                {
+                    Console.WriteLine("ID não encontrado, tente novamente");
+                    Thread.Sleep(1000);
+                }
+                else
+                {
+                    Console.WriteLine($"ID Pesquisado: {idparametro}");
+                    Console.WriteLine();
+                    Console.WriteLine(existe);
+                    Thread.Sleep(3000);
+                }
+            }
+            else if (opcao == 3)
+            {
+                List<Produto> produtosComVolumeMinimoAtingido = estoque.ListarProdutosComVolumeMinimoAtingido();
+                if (produtosComVolumeMinimoAtingido.Count > 0)
+                {
+                    Console.WriteLine("===== Produtos com volume mínimo atingido =====");
+                    foreach (Produto produto in produtosComVolumeMinimoAtingido)
+                    {
+                        Console.WriteLine($"ID: {produto.Id}, Nome: {produto.NomeProduto}, Quantidade: {produto.Quantidade}, Volume Mínimo: {produto.VolumeMinimo}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Não há produtos com volume mínimo atingido.");
+                    Console.WriteLine();
+                }
+
+
+                Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
+                Console.WriteLine();
+                Thread.Sleep(2000);
+                GerarInventario();
+
+            }
+            else if (opcao == 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU PRINCIPAL");
+                Console.WriteLine();
+                Thread.Sleep(1000);
+                MostrarMenuPrincipal();
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
+            Console.WriteLine();
+            Thread.Sleep(1000);
+            GerarInventario();
         }
 
-     
-        Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
-        Console.WriteLine();
-        Thread.Sleep(2000);
-        GerarInventario();
-
-    }
-    else if (opcao == 0)
-    {
-         Console.WriteLine();
-     Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU PRINCIPAL");
-        Console.WriteLine();
-        Thread.Sleep(1000);
-        MostrarMenuPrincipal();
-    }
-    
-    Console.WriteLine();
-     Console.WriteLine("[ALERTA!] VOCÊ SERA REDIRECIONADO AO MENU ANTERIOR");
-        Console.WriteLine();
-        Thread.Sleep(1000);
-        GerarInventario();
-}
-    
         private static void CarregarFuncionariosDeArquivo()
         {
             try
@@ -546,7 +546,8 @@ Console.WriteLine();
 
                     linhas.Add(linhaFuncionario);
                 }
-                File.AppendAllLines(arquivoFuncionarios, linhas);
+
+                File.WriteAllLines(arquivoFuncionarios, linhas);
             }
             catch (Exception ex)
             {
